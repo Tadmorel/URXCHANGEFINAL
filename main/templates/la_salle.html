@@ -1,0 +1,266 @@
+{% extends 'main/base.html' %}
+<!-- main/templates/la_salle.html -->
+
+{% block content %}
+<div class="container">
+    <h1 style="text-align: center;">{{ university.nombre_uni }}</h1>
+
+    <div class="university-box">
+       <!--<h1 >{{ university.nombre_uni }}</h1>--> 
+        <img src="{{ university.logo.url }}" height="150" width="auto" alt="">
+        <h3>Dirección: {{ university.direccion }}</h3>
+        <h3>Número de contacto: {{ university.contacto }}</h3>
+    </div>
+    {% if collab %}
+    <h2>Crear una Publicación</h2>
+    <form id="post-form" method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" value="post" name="validator">
+
+        <label for="id_type">Tipo de Publicación</label>
+        {{ post_form.type }}
+        <p></p>
+
+        <!-- Campos comunes -->
+        <div id="common-fields">
+            <label for="title">Título</label>
+            <input type="text" name="title" id="title">
+            <p></p>
+            
+            <label for="description">Descripción</label>
+            <textarea name="description" id="description"></textarea>
+        </div>
+        <p></p>
+
+        <!-- Campos específicos de Alojamiento -->
+        <div id="alojamiento-fields" style="display:none;">
+            <label for="direccion">Dirección</label>
+            <input type="text" name="direccion" id="direccion">
+            <p></p>
+    
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" id="precio">
+            <p></p>
+    
+            <label for="cuartos">Cuartos</label>
+            <select name="cuartos" id="cuartos">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="+10">más de 10</option>
+            </select>
+            <p></p>
+    
+            <label for="banos">Baños</label>
+            <select name="banos" id="banos">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="+10">más de 10</option>
+            </select>
+            <p></p>
+    
+            <label for="imagen">Imagen</label>
+            <input type="file" name="foto" id="foto">
+        </div>
+        <p></p>
+
+        <button type="submit">Crear Publicación</button>
+    </form>
+    <p></p>
+    
+    <div class="university-buttons2">
+        <a href="{% url 'edit_university' university.id %}" class="btn btn-secondary mt-3 mr-3">Editar Universidad</a>
+        <a href="{% url 'delete_university' university.id %}" class="btn btn-secondary mt-3 mr-3">Eliminar Universidad</a>
+    </div>
+    {% endif %}
+    <hr>
+
+    <h1>Publicaciones</h1>
+    <!-- Pestañas para filtrar publicaciones -->
+    <div class="tabs">
+        <button onclick="filterPosts('all')" class="tab-button" id="tab-all">Todas</button>
+        <button onclick="filterPosts('alojamiento')" class="tab-button" id="tab-alojamiento">Alojamiento</button>
+        <button onclick="filterPosts('otras')" class="tab-button" id="tab-otras">Otras</button>
+    </div>
+    
+
+    <!-- Contenedor de publicaciones -->
+    <div id="posts-container">
+        {% for post in posts %}
+        <div class="post-box post-{{ post.post.type }}">
+            <div class="post-tag">{{ post.post.type | title }}</div>
+            <h2>{{ post.post.title }}</h2>
+            <!--<h3>Tema: {{ post.post.type }}</h3>-->
+
+            {% if post.post.type == "alojamiento" %}
+            <div class="post-container">
+                <img src="{% if post.post.foto %} {{ post.post.foto.url }} {% else %} none {% endif %}" alt="Foto" height="250" width="auto">
+                <div class="post-details">
+                    <h2>Dirección: {{ post.post.direccion }}</h2>
+                    <h3>Precio:  $ {{ post.post.precio }}</h3>
+                    <h3>Cuartos: {{ post.post.cuartos }}</h3>
+                    <h3>Baños: {{ post.post.banos }}</h3>
+                </div>
+            </div>
+            {% endif %}
+
+
+            <p>{{ post.post.description }}</p>
+
+            {% if post.post.type == "alojamiento" %}
+
+
+
+            <h3>Valoraciones:</h3>
+
+
+            <div class="comments-section">
+                
+                {% for comment in post.comments %}
+                {% if comment.is_active %}
+                    <div class="comment-box {% if comment.valuation == 'Buena' %}comment-good{% elif comment.valuation == 'Regular' %}comment-regular{% elif comment.valuation == 'Mala' %}comment-bad{% endif %}">
+                        <div class="comment-content">
+
+                        <!--<p><strong>Valuación:</strong> {{ comment.valuation }}</p>-->
+                        <p><strong>{{ comment.usuario.username }}: </strong> {{ comment.comment }}</p>
+                        <!--<p><strong>Realizado por: </strong>{{ comment.usuario.username }}</p>-->
+                        <p></p>
+                        {% if collab %}
+                            <form action="{% url 'delete_valuation' comment.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="boton-valoracion">
+                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                </div>
+
+                            </form>
+                        {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+                <form action="" method="post" class="comment-form">
+                    <input type="hidden" value="comment" name="validator">
+                    {% csrf_token %}
+                    <p></p>
+                    <label>Valorar alojamiento: </label>
+                    <input type="hidden" value="{{ post.post.id }}" name="post_id">
+                    <input type="text" name="comment" placeholder="Enviar un comentario">
+                    <button type="submit">Enviar</button>
+                    <p></p>
+                </form>
+            </div>
+
+            {% endif %}
+
+            {% if collab %}
+            <div class="university-buttons3">
+                <a href="{% url 'edit_post' post.post.id %}" class="btn btn-warning">Editar Publicación</a>
+                <a href="{% url 'delete_post' post.post.id %}" class="btn btn-warning">Eliminar Publicación</a>
+            </div>
+            {% endif %}
+            
+        </div>
+        {% empty %}
+        <p>No hay publicaciones disponibles.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Script para filtrar publicaciones -->
+    <script>
+        function filterPosts(category) {
+            const allPosts = document.querySelectorAll('.post-box');
+
+            allPosts.forEach(post => {
+                post.style.display = 'none';
+
+                if (category === 'all') {
+                    post.style.display = 'block';
+                } else if (category === 'alojamiento' && post.classList.contains('post-alojamiento')) {
+                    post.style.display = 'block';
+                } else if (category === 'otras' && !post.classList.contains('post-alojamiento')) {
+                    post.style.display = 'block';
+                }
+            });
+
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.getElementById(`tab-${category}`).classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            filterPosts('all');
+        });
+    </script>
+    
+
+    <style>
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background-color: #375a9e;
+        }
+
+        .tab-button.active {
+            background-color: #ff7043;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selector = document.getElementById("id_type");
+            const alojamientoFields = document.getElementById("alojamiento-fields");
+            const commonFields = document.getElementById("common-fields");
+        
+            function toggleFields() {
+                if (selector.value === "alojamiento") {
+                    alojamientoFields.style.display = "block";
+                } else {
+                    alojamientoFields.style.display = "none";
+                }
+            }
+        
+            toggleFields();
+            selector.addEventListener('change', toggleFields);
+        });
+    </script>
+
+    
+
+
+
+    
+
+    
+</div>
+{% endblock %}

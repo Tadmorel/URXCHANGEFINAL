@@ -1,0 +1,15 @@
+<!-- main/templates/main/profile.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Editar Perfil</h2>
+    <a href="{% url 'password_change' %}" class="btn btn-warning">Cambiar Contraseña</a>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+{% endblock %}

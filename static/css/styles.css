@@ -1,0 +1,523 @@
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #869eb6, #e1e9f2); /* Fondo degradado más claro */
+    color: #333;
+}
+
+/* Barra de navegación */
+.navbar {
+    width: 100%; /* Asegura que la barra de navegación ocupe el ancho completo de la página */
+    background: linear-gradient(90deg, #375a9e, #4a90e2);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor interno centrado dentro de la barra de navegación */
+.navbar-container {
+    max-width: 1200px; /* Ajusta el ancho máximo del contenido interno */
+    margin: 0 auto; /* Centra el contenido */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar-brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para alinear los elementos de navegación a la derecha */
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    padding-left: 0;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 20px;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffde59;
+}
+
+/* Logo en la barra de navegación */
+.navbar-logo {
+    height: 45px;
+    width: auto;
+    border-radius: 50%; /* Bordes redondeados para un fondo circular */
+    background-color: #ffffff;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Sombra más intensa en hover */
+}
+
+/* Contenedor principal */
+.container {
+    margin: 80px auto;
+    max-width: 1200px; /* Ancho máximo más amplio */
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+    transition: box-shadow 0.3s ease;
+
+}
+
+.container:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Mensajes de alerta */
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.2);
+}
+
+/* Encabezados y texto */
+h1.display-4 {
+    font-size: 36px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+h2.lead {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+
+
+}
+
+p.lead, p {
+    font-size: 16px;
+    color: #555;
+
+}
+
+/* Formularios */
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], textarea, select {
+    width: 100%;
+    padding: 10px; /* Ajuste cómodo del espacio interior */
+    margin-bottom: 10px;
+    border: 2px solid #375a9e; /* Borde más grueso y de color */
+    border-radius: 6px;
+    background-color: #f0f4f8; /* Fondo suave para que resalten */
+    font-size: 14px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    border-color: #4a90e2; /* Color de borde al enfocarse */
+    background-color: #e8f0fe; /* Fondo más claro al enfocarse */
+    outline: none; /* Elimina el borde predeterminado de enfoque */
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.2); /* Sombra para resaltar aún más */
+}
+
+/* Botones */
+button {
+    background: linear-gradient(90deg, #4477ba, #375a9e);
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #375a9e, #2c5187);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Botones de selección de universidades */
+.university-buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 5px;
+    background: linear-gradient(90deg, #ff7043, #ff8a65); /* Degradado naranja */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.university-buttons a:hover {
+    background: linear-gradient(90deg, #ff8a65, #ff7043);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Sombra más intensa en hover */
+}
+
+.university-buttons a:active {
+    transform: scale(0.98);
+}
+
+/* Estilo de publicaciones */
+.post-box {
+    position: relative; /* Necesario para posicionar la etiqueta en la parte superior */
+    padding-top: 40px; /* Espacio para la etiqueta */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9; /* Fondo gris claro */
+    border: 2px solid #90a5bd; /* Borde azul más grueso */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.2); /* Sombras para destacar */
+    transition: transform 0.2s ease, box-shadow 0.3s ease; /* Animación de transformación y sombra */
+}
+
+
+
+/* Estilo de la etiqueta */
+.post-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #4a90e2; /* Cambia el color según el tipo de publicación */
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Diferentes colores según el tipo de publicación */
+.post-alojamiento .post-tag {
+    background-color: #e09840; /* Color específico para alojamiento */  
+}
+
+.post-otras .post-tag {
+    background-color: #ff7043; /* Color específico para otras publicaciones */
+}
+
+
+
+.post-box:hover {
+    transform: scale(1.02); /* Aumenta ligeramente el tamaño al pasar el mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.2); /* Sombras más fuertes en hover */
+    background-color: #ffffff; /* Cambia el fondo a blanco en hover */
+}
+
+.post-box h2 {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.post-box h3, .post-box p {
+    color: #555;
+    margin-bottom: 5px;
+}
+
+
+
+.post-box .btn:hover {
+    background-color: #375a9e; /* Color de fondo más oscuro en hover */
+}
+
+.form-text.text-muted {
+    display: none;
+}
+
+/* Target the username field specifically */
+input#username {
+    max-width: 300px; /* Adjust this value as desired */
+    width: 100%;
+}
+
+/* Set a max-width for all input, textarea, and select fields in the form */
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form select,
+form textarea {
+    max-width: 500px; /* Adjust this width as desired */
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+
+/* Styling for the university information box */
+.university-box {
+    padding: 20px;
+    border: 2px solid #4a90e2; /* Adjust color as desired */
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    margin-bottom: 20px; /* Spacing below the box */
+    max-width: 600px; /* Limit width for better layout */
+    margin: auto; /* Center the box horizontally */
+}
+
+.university-box h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.university-box h3 {
+    font-size: 18px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.university-box img {
+    display: block;
+    margin: 10px auto; /* Center the image inside the box */
+}
+
+
+
+
+.comments-section {
+    margin-left: 40px; /* Desplaza el contenedor de comentarios a la derecha */
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+
+
+
+.post-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* Espacio entre la imagen y el texto */
+    margin-bottom: 20px; /* Espacio inferior entre publicaciones */
+}
+
+.post-image {
+    width: 300px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados para la imagen */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la imagen */
+}
+
+.post-details {
+    max-width: 500px; /* Ancho máximo para el contenido de texto */
+}
+
+
+
+.university-buttons2 {
+    text-align: right; /* Alinea los botones hacia la derecha */
+    margin-top: 15px; /* Espaciado superior para separarlo de otros elementos */
+}
+
+.university-buttons2 a {
+    margin-left: 10px; /* Espaciado entre los botones */
+    display: inline-block; /* Asegura que los botones se alineen correctamente */
+}
+
+
+
+.university-buttons3 {
+    text-align: right; /* Alinea los botones hacia la derecha */
+    margin-top: 15px; /* Espaciado superior para separarlo de otros elementos */
+}
+
+.university-buttons3 a {
+    margin-left: 10px; /* Espaciado entre los botones */
+    display: inline-block; /* Asegura que los botones se alineen correctamente */
+}
+
+
+
+
+.resources-section {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.resources-text {
+    font-size: 18px;
+    color: #4a4a4a;
+    font-style: italic;
+}
+
+.universities-title {
+    font-size: 24px;
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.university-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.university-button {
+    padding: 10px 15px;
+    background-color: #ff7043;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.university-button:hover {
+    background-color: #e64a19;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+.comment-box {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.comment-box {
+    border: 2px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 70%; /* Ajusta este valor según el diseño deseado */
+    margin-left: 0; /* Centra la caja horizontalmente */
+    margin-right: auto; /* Centra la caja horizontalmente */
+    background-color: #f9f9f9; /* Fondo predeterminado */
+
+}
+
+/* Contornos basados en la valoración */
+.comment-good {
+    border-color: #4CAF50; /* Verde */
+    background-color: #e8f5e9; /* Verde claro */
+
+}
+
+.comment-regular {
+    border-color: #FFC107; /* Amarillo */
+    background-color: #fffde7; /* Amarillo claro */
+
+}
+
+.comment-bad {
+    border-color: #F44336; /* Rojo */
+    background-color: #ffebee; /* Rojo claro */
+
+}
+
+
+
+
+.valuation-filter-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-button {
+    padding: 10px 15px;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #375a9e;
+}
+
+.filter-button.active {
+    background-color: #ff7043;
+}
+
+
+.boton-valoracion {
+    margin-left: auto; /* Centra la caja horizontalmente */
+    margin-right: auto; /* Centra la caja horizontalmente */
+    
+
+}
+
+

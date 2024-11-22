@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>¿Estás seguro que quieres eliminar esta valuación?</h2>
+    <p>{{ comment.comment }}</p>
+    <p>Valuación: {{ comment.valuation }}</p>
+    <p>Creado por: {{ comment.usuario.first_name }} {{ comment.usuario.last_name }} ({{ comment.usuario.username }})</p>
+
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" name="yes" class="btn btn-danger">Sí, eliminar</button>
+        <button type="submit" name="no" class="btn btn-secondary">No, regresar</button>
+    </form>
+</div>
+{% endblock %}

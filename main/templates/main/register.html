@@ -1,0 +1,94 @@
+<!-- main/templates/main/register.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2>Registrarse</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form.email.label_tag }}
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.user_type.label_tag }}
+                {{ form.user_type }}
+                {{ form.user_type.errors }}
+            </div>
+            <div class="form-group" id="country-field">
+                {{ form.country.label_tag }}
+                {{ form.country }}
+                {{ form.country.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.university.label_tag }}
+                {{ form.university }}
+                {{ form.university.errors }}
+            </div>
+            <!--Cambiar contraseña-->
+            <div class="form-group">
+                {{ form.security_question.label_tag }}
+                {{ form.security_question }}
+                {{ form.security_question.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.security_answer.label_tag }}
+                {{ form.security_answer }}
+                {{ form.security_answer.errors }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+            <div class="form-group">
+                {{ form.password2.label_tag }}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Mostrar u ocultar el campo "País" según el tipo de usuario seleccionado
+    document.addEventListener('DOMContentLoaded', function() {
+        const userTypeField = document.getElementById('id_user_type');
+        const countryField = document.getElementById('country-field');
+
+        function toggleCountryField() {
+            if (userTypeField.value === 'student') {
+                countryField.style.display = 'block';
+            } else {
+                countryField.style.display = 'none';
+            }
+        }
+
+        userTypeField.addEventListener('change', toggleCountryField);
+        toggleCountryField();  // Inicializar al cargar la página
+    });
+</script>
+{% endblock %}
+

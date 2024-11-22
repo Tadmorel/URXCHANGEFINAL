@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Publicaciones del Tecnológico de Monterrey</h1>
+
+    {% for post in Posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.description }}</p>
+
+            {% if user.is_authenticated and user.user_type == 'collaborator' %}
+
+                <!-- Enlace para editar la publicación -->
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-primary">Editar</a>
+
+                <!-- Enlace para eliminar la publicación -->
+                <a href="{% url 'delete_post' post.id %}" class="btn btn-danger">Eliminar</a>
+            {% endif %}
+
+        </div>
+    {% empty %}
+        <p>No hay publicaciones disponibles.</p>
+    {% endfor %}
+</div>
+{% endblock %}

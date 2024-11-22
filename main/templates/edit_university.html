@@ -1,0 +1,16 @@
+<!-- main/templates/edit_university.html -->
+
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Editar Universidad</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+    
+    <a href="{% url 'delete_university' university.id %}" class="btn btn-danger mt-3">Desactivar Universidad</a>
+</div>
+{% endblock %}

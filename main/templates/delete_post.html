@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>¿Estás seguro de que deseas eliminar esta publicación?</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" name="yes" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'university' post.university.id %}" class="btn btn-secondary">No, volver</a>
+</form>
+{% endblock %}

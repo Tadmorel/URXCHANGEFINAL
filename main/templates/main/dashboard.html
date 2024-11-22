@@ -1,0 +1,61 @@
+<!-- main/templates/main/dashboard.html -->
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="jumbotron">
+
+    <h1 class="display-4">¡Bienvenido, {{ user.first_name }}!</h1>
+   <!-- <a href="{% url 'password_change' %}" class="btn btn-warning">Cambiar Contraseña</a>-->
+    <h2 class="lead"></h2>
+    
+    <hr class="my-4">
+    <div class="resources-section">
+        <p class="resources-text">Aquí puedes acceder a recursos y consejos para tu intercambio.</p>
+    </div>
+    <h2 class="universities-title">Nuestras universidades</h2>
+    <div class="university-buttons">
+        {% for university in universities %}
+            {% if not university.deleted_date %}
+                <a href="{% url 'university' university.id %}" class="university-button">{{ university.nombre_uni }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+
+<hr>
+
+
+
+    {%if collab %}
+    <h3 class="lead">Como colaborador puedes publicar alojamientos, bancos y consejos en general.</h3>
+    <h2>Dar de alta Universidad </h2>
+
+        <form method="POST" action="" enctype="multipart/form-data"> 
+            {%csrf_token %}
+            <label for "nombre_uni"> Nombre de la Universidad: </label>
+            
+            {{post_form.nombre_uni}}
+            <p></p>
+            <label for "id_description"> Dirección: </label>
+            {{post_form.direccion}}
+            <!-- Poner label a todos-->
+            <p></p>
+            <label for "id_description"> Contacto: </label>
+            {{post_form.contacto}}
+            <p></p>
+            <label for "id_description"> Tipo: </label>
+            {{post_form.tipo}}
+            <p></p>
+            <label for "id_description"> Insertar Logo: </label>
+            {{post_form.logo}}
+
+
+            <button type="submit"> Crear Universidad </button>
+
+        </form>      
+    {%endif %}
+
+
+
+{% endblock %}
+
